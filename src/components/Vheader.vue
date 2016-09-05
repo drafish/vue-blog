@@ -5,7 +5,7 @@
             <ul class="uk-navbar-nav">
                 <li><a v-link="'/home'"><i class="uk-icon-home"></i> 主页</a></li>
                 <li><a href="https://github.com/xwlyy/vue-blog" target="_blank"><i class="uk-icon-code"></i> 前端源码</a></li>
-                <li><a href="https://github.com/xwlyy/thinkjs-blog" target="_blank"><i class="uk-icon-code"></i> 后端源码</a></li>
+                <li><a href="https://github.com/xwlyy/express-blog" target="_blank"><i class="uk-icon-code"></i> 后端源码</a></li>
             </ul>
             <div class="uk-navbar-flip">
                 <ul v-show="user" class="uk-navbar-nav">
