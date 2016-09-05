@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import home from './modules/home'
 import header from './modules/header'
 import blog from './modules/blog'
+import load from './modules/load'
 
 Vue.use(Vuex)
 Vue.config.debug = true
@@ -14,6 +15,7 @@ export default new Vuex.Store({
   modules: {
     home,
     header,
-    blog
+    blog,
+    load
   }
 })

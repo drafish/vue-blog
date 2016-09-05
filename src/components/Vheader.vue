@@ -25,11 +25,13 @@
             </div>
         </div>
     </nav>
+    <loading v-bind:load="!isFetch"></loading>
 </template>
 
 <script>
+import Loading from './Loading'
 import { setUser, logout } from '../vuex/actions'
-import { getUser } from '../vuex/getters'
+import { getUser, getIsFetch } from '../vuex/getters'
 export default {
   vuex: {
     actions: {
@@ -37,11 +39,17 @@ export default {
       logout: logout
     },
     getters: {
-      user: getUser
+      user: getUser,
+      isFetch: getIsFetch
     }
   },
+  components: {
+    Loading
+  },
   ready () {
-    this.setUser()
+    if (window.localStorage.getItem('token')) {
+      this.setUser()
+    }
   }
 }
 </script>

@@ -1,4 +1,5 @@
 export const SET_BLOGS = 'SET_BLOGS'
+export const SET_ISFETCH = 'SET_ISFETCH'
 
 export const SET_BLOG = 'SET_BLOG'
 export const SET_COMMENTS = 'SET_COMMENTS'

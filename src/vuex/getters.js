@@ -1,5 +1,6 @@
 export const getBlogs = ({ home }) => home.blogs
 export const getBPage = ({ home }) => home.page
+export const getIsFetch = ({ load }) => load.isFetch
 
 export const getUser = ({ header }) => header.user
 
