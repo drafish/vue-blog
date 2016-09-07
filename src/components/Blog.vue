@@ -19,6 +19,7 @@
                         <h4 class="uk-comment-title" v-text="user.nickname"></h4>
                     </header>
                     <div class="uk-comment-body">
+                        <div class="uk-alert uk-alert-danger" v-if="message" v-text="message"></div>
                         <form class="uk-form" v-on:submit.prevent="submit">
                             <div class="uk-alert uk-alert-danger uk-hidden"></div>
                             <div class="uk-form-row">
@@ -95,16 +96,21 @@ export default {
   },
   methods: {
     submit: function () {
-      this.postComment({
-        id: this.$route.params.id,
-        content: this.comment
-      })
-      this.comment = ''
+      if (this.comment.trim() === '') {
+        this.message = '评论不能为空'
+      } else {
+        this.postComment({
+          id: this.$route.params.id,
+          content: this.comment
+        })
+        this.comment = ''
+      }
     }
   },
   data () {
     return {
-      comment: ''
+      comment: '',
+      message: ''
     }
   }
 }

@@ -1,5 +1,6 @@
 <template>
     <div class="uk-width-medium-3-4">
+        <div class="uk-alert uk-alert-danger" v-if="message" v-text="message"></div>
         <form v-on:submit.prevent="submit" class="uk-form uk-form-stacked">
             <div class="uk-alert uk-alert-danger uk-hidden"></div>
             <div class="uk-form-row">
@@ -58,17 +59,22 @@ export default {
   },
   methods: {
     submit: function () {
-      this.postBlog({
-        id: this.$route.params.id,
-        title: this.title,
-        content: this.content
-      })
+      if (this.title.trim() === '' || this.content.trim() === '') {
+        this.message = '标题和内容不能为空'
+      } else {
+        this.postBlog({
+          id: this.$route.params.id,
+          title: this.title,
+          content: this.content
+        })
+      }
     }
   },
   data () {
     return {
       title: '',
-      content: ''
+      content: '',
+      message: ''
     }
   }
 }

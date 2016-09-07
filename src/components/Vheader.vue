@@ -1,11 +1,8 @@
 <template>
   <nav class="uk-navbar uk-navbar-attached uk-margin-bottom">
         <div class="uk-container uk-container-center">
-            <a v-link="'/home'" class="uk-navbar-brand">Awesome</a>
             <ul class="uk-navbar-nav">
                 <li><a v-link="'/home'"><i class="uk-icon-home"></i> 主页</a></li>
-                <li><a href="https://github.com/xwlyy/vue-blog" target="_blank"><i class="uk-icon-code"></i> 前端源码</a></li>
-                <li><a href="https://github.com/xwlyy/express-blog" target="_blank"><i class="uk-icon-code"></i> 后端源码</a></li>
             </ul>
             <div class="uk-navbar-flip">
                 <ul v-show="user" class="uk-navbar-nav">

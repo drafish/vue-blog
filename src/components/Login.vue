@@ -2,6 +2,7 @@
 
     <div class="uk-container-center uk-width-medium-1-3 uk-width-small-1-2">
     <h3 class="uk-text-center uk-margin-top">欢迎回来！</h3>
+    <div class="uk-alert uk-alert-danger" v-if="message" v-text="message"></div>
     <form class="uk-form uk-form-stacked uk-panel uk-panel-box" v-on:submit.prevent="submit">
         <div class="uk-alert uk-alert-danger" hidden="hidden"></div>
         <div class="uk-form-row">
@@ -35,13 +36,18 @@ export default {
   },
   methods: {
     submit: function () {
-      this.login(this.username, this.password)
+      if (this.username.trim() === '' || this.password === '') {
+        this.message = '用户名或密码不能为空'
+      } else {
+        this.login(this.username, this.password)
+      }
     }
   },
   data () {
     return {
       username: '',
-      password: ''
+      password: '',
+      message: ''
     }
   }
 }

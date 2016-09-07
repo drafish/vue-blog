@@ -3,6 +3,11 @@ import { API_ROOT } from '../config'
 import marked from 'marked'
 import highlightjs from 'highlight.js'
 import 'highlight.js/styles/github.css'
+import crypto from 'crypto'
+const md5 = (str, key) => {
+  let hash = crypto.createHash('md5')
+  return hash.update(str + key).digest('hex')
+}
 marked.setOptions({
   highlight: (code) => highlightjs.highlightAuto(code).value
 })
@@ -75,8 +80,8 @@ export const setComments = function ({ dispatch }, page, size = 5) {
 export const login = function ({ dispatch }, username, password) {
   dispatch(types.SET_ISFETCH, 0)
   this.$http.post(API_ROOT + 'api/login', {
-    username: this.username.trim(),
-    password: this.password
+    username: username.trim(),
+    password: md5(username.trim(), password)
   }).then(function (res) {
     dispatch(types.SET_USER, res.data.user)
     dispatch(types.SET_ISFETCH, 1)
@@ -89,8 +94,8 @@ export const login = function ({ dispatch }, username, password) {
 export const register = function ({ dispatch }, username, password) {
   dispatch(types.SET_ISFETCH, 0)
   this.$http.post(API_ROOT + 'api/register', {
-    username: this.username.trim(),
-    password: this.password
+    username: username.trim(),
+    password: md5(username.trim(), password)
   }).then(function (res) {
     dispatch(types.SET_USER, res.data.user)
     dispatch(types.SET_ISFETCH, 1)
