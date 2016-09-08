@@ -110,8 +110,19 @@ export default {
   data () {
     return {
       comment: '',
-      message: ''
+      message: '',
+      title: '六月羊的博客页'
     }
+  },
+  head: {
+    title: function () {
+      return {
+        inner: this.title
+      }
+    },
+    meta: [
+      { name: 'description', content: 'blog page', id: 'desc' }
+    ]
   }
 }
 </script>

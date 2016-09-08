@@ -3,7 +3,9 @@ import App from './App.vue'
 import { smartDate } from './filters'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+import VueHead from 'vue-head'
 
+Vue.use(VueHead)
 Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.filter('smartDate', smartDate)
