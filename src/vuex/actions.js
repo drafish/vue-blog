@@ -13,7 +13,7 @@ marked.setOptions({
 })
 export const setBlogs = function ({ dispatch }, page, size = 5) {
   dispatch(types.SET_ISFETCH, 0)
-  this.$http.get(API_ROOT + 'api/blogs', {
+  this.$http.get(API_ROOT + 'api/blog', {
     params: {
       page: page,
       size: size
@@ -63,7 +63,7 @@ export const setComments = function ({ dispatch }, page, size = 5) {
   dispatch(types.SET_ISFETCH, 0)
   this.$http.get(API_ROOT + 'api/comment', {
     params: {
-      id: this.$route.params.id,
+      _id: this.$route.params.id,
       page: page,
       size: size
     }
@@ -79,9 +79,11 @@ export const setComments = function ({ dispatch }, page, size = 5) {
 }
 export const login = function ({ dispatch }, username, password) {
   dispatch(types.SET_ISFETCH, 0)
-  this.$http.post(API_ROOT + 'api/login', {
-    username: username.trim(),
-    password: md5(username.trim(), password)
+  this.$http.get(API_ROOT + 'api/user', {
+    params: {
+      username: username.trim(),
+      password: md5(username.trim(), password)
+    }
   }).then(function (res) {
     dispatch(types.SET_USER, res.data.user)
     dispatch(types.SET_ISFETCH, 1)
@@ -93,7 +95,7 @@ export const login = function ({ dispatch }, username, password) {
 }
 export const register = function ({ dispatch }, username, password) {
   dispatch(types.SET_ISFETCH, 0)
-  this.$http.post(API_ROOT + 'api/register', {
+  this.$http.post(API_ROOT + 'api/user', {
     username: username.trim(),
     password: md5(username.trim(), password)
   }).then(function (res) {

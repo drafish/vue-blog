@@ -100,7 +100,7 @@ export default {
         this.message = '评论不能为空'
       } else {
         this.postComment({
-          id: this.$route.params.id,
+          _id: this.$route.params.id,
           content: this.comment
         })
         this.comment = ''

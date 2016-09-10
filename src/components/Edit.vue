@@ -63,7 +63,7 @@ export default {
         this.message = '标题和内容不能为空'
       } else {
         this.postBlog({
-          id: this.$route.params.id,
+          _id: this.$route.params.id,
           title: this.title,
           content: this.content
         })
