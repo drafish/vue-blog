@@ -1,22 +1,32 @@
-### 本站前端源于廖雪峰老师的<a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" target="_blank">python3教程</a>最后的实战项目，我就是在这个教程里接触到了vue这个强大的前端框架。
-#### 不过廖老师在项目中对vue的使用仅仅是数据绑定等一些非常基础的用法，我在看了vue的官方文档后发现vue可以做的事远不止于此。
-#### vue的高级玩法就是写spa，vue-router搞定路由，vue-resource搞定服务器通信，vuex搞定状态管理。
-#### vue提供了写一个spa所需要的所有东西，而我只需要拿来用就好了。尤大（vue的作者）甚至还写了一个vue-cli，可以直接生成项目，让我这样经验欠缺的开发者可以快速上手。真是前人栽树后人乘凉啊。当时觉得不把这spa写出来都对不起尤大。
-#### 写这个spa，我参考了vue官方给出的示例<a href="https://github.com/vuejs/vue-hackernews" target="_blank">https://github.com/vuejs/vue-hackernews</a>，还有将就同学的项目<a href="https://github.com/jiangjiu/vue-leancloud-blog" target="_blank">https://github.com/jiangjiu/vue-leancloud-blog</a>
-#### 有朋友想学vue的可以参考这两个项目，当然也可以参考我的<a href="https://github.com/xwlyy/vue-blog" target="_blank">https://github.com/xwlyy/vue-blog</a>
+### 起源
+博客源于廖雪峰老师的[python3教程](http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000)最后的实战项目。
 
-## Build Setup
+目前UI部分还保留了原来的样式，其余部分都已重写。前端用vue重写成单页，后端也用nodejs重写。
 
-``` bash
-# install dependencies
-npm install
+#### 本项目只是单页博客的前端部分，需要配合后端启动
+后端有两个版本，[express-blog](https://github.com/xwlyy/express-blog.git)、[thinkjs-blog](https://github.com/xwlyy/thinkjs-blog-blog.git)
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
+### 开发
 
 ```
+$ git clone https://github.com/xwlyy/vue-blog.git
+$ cd vue-blog
+$ npm install
+$ npm run dev
+```
+在浏览中打开http://localhost:8080
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### 目录结构
+
+本来想写下目录结构的，但后来想想还是算了。因为我是用vue-cli生成的项目，有些文件目录我自己也不知道干啥的，反正能用就行了。
+
+除了`docs`和`src`这两个目录，其他我都没动过。`docs`目录是我自己新建的，是github pages目录。`src`目录就是核心代码目录了，我写的全在这个目录下。
+
+### 生产环境构建  
+
+```
+$ npm run build
+```
+
+### 部署到github pages
+[免费部署上线](http://www.paidepaiper.top/2016/10/08/read-before-study-jackblog/#%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2%E4%B8%8A%E7%BA%BF)
