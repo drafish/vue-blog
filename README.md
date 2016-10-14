@@ -4,7 +4,7 @@
 目前UI部分还保留了原来的样式，其余部分都已重写。前端用vue重写成单页，后端也用nodejs重写。
 
 #### 本项目只是单页博客的前端部分，需要配合后端启动
-后端有两个版本，[express-blog](https://github.com/xwlyy/express-blog.git)、[thinkjs-blog](https://github.com/xwlyy/thinkjs-blog-blog.git)
+后端有两个版本，[express-blog](https://github.com/xwlyy/express-blog.git)、[thinkjs-blog](https://github.com/xwlyy/thinkjs-blog.git)
 
 ### 开发
 
