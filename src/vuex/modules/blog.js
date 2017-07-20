@@ -1,7 +1,7 @@
 import {SET_BLOG, SET_COMMENTS, CONCAT_COMMENT} from '../mutation-types'
 
 const state = {
-  blog: {},
+  blog: {user: {}},
   comments: [],
   page: {}
 }
@@ -16,7 +16,7 @@ const mutations = {
     state.page = page
   },
   [CONCAT_COMMENT] (state, comment) {
-    state.comments = comment.concat(state.comments)
+    state.comments.unshift(comment)
   }
 }
 

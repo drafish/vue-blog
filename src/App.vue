@@ -1,19 +1,20 @@
 <template>
-  <vheader></vheader>
-  <div class="uk-container uk-container-center">
-    <div class="uk-grid">
-      <router-view></router-view>          
+  <div id="app">
+    <vheader></vheader>
+    <div class="uk-container uk-container-center">
+      <router-view class="uk-grid"></router-view>
     </div>
+    <vfooter></vfooter>
   </div>
-  <vfooter></vfooter>
 </template>
 
-<script type="text/babel">
-  import Vheader from './components/Vheader'
-  import Vfooter from './components/Vfooter'
-  import store from './vuex/store'
+<script>
+  import Vheader from '@/components/Vheader'
+  import Vfooter from '@/components/Vfooter'
+  import store from '@/vuex/store'
 
   export default {
+    name: 'app',
     components: {
       Vheader,
       Vfooter

@@ -9,7 +9,7 @@
             <label class="uk-form-label uk-hidden-small">用户名:</label>
             <div class="uk-form-controls uk-form-icon">
                 <i class="uk-icon-envelope-o"></i>
-                <input class="uk-form-large uk-form-width-large" type="text" placeholder="用户名" maxlength="50" v-model="username">
+                <input class="uk-form-large uk-form-width-large" type="text" placeholder="用户名" maxlength="50" v-model="account">
             </div>
         </div>
         <div class="uk-form-row">
@@ -36,16 +36,16 @@ export default {
   },
   methods: {
     submit: function () {
-      if (this.username.trim() === '' || this.password === '') {
+      if (this.account.trim() === '' || this.password === '') {
         this.message = '用户名或密码不能为空'
       } else {
-        this.login(this.username, this.password)
+        this.login(this.account, this.password)
       }
     }
   },
   data () {
     return {
-      username: '',
+      account: '',
       password: '',
       message: ''
     }

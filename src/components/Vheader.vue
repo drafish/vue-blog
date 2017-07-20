@@ -1,11 +1,12 @@
 <template>
-  <nav class="uk-navbar uk-navbar-attached uk-margin-bottom">
+  <div>
+    <nav class="uk-navbar uk-navbar-attached uk-margin-bottom">
         <div class="uk-container uk-container-center">
             <ul class="uk-navbar-nav">
-                <li><a v-link="'/home'"><i class="uk-icon-home"></i> 主页</a></li>
+                <li><router-link to="/"><i class="uk-icon-home"></i> 主页</router-link></li>
             </ul>
             <div class="uk-navbar-flip">
-                <ul v-show="user" class="uk-navbar-nav">
+                <ul v-if="user.id" class="uk-navbar-nav">
                     <li class="uk-parent" data-uk-dropdown>
                         <a><i v-text="' '+user.nickname" class="uk-icon-user"></i></a>
                         <div class="uk-dropdown uk-dropdown-navbar">
@@ -16,13 +17,14 @@
                     </li>
                 </ul>
                 <ul v-else class="uk-navbar-nav">
-                    <li><a v-link="'/login'"><i class="uk-icon-sign-in"></i> 登陆</a></li>
-                    <li><a v-link="'/register'"><i class="uk-icon-edit"></i> 注册</a></li>
+                    <li><router-link to="/login"><i class="uk-icon-sign-in"></i> 登陆</router-link></li>
+                    <li><router-link to="/register"><i class="uk-icon-edit"></i> 注册</router-link></li>
                 </ul>
             </div>
         </div>
     </nav>
     <loading v-bind:load="!isFetch"></loading>
+  </div>
 </template>
 
 <script>
@@ -43,10 +45,8 @@ export default {
   components: {
     Loading
   },
-  ready () {
-    if (window.localStorage.getItem('token')) {
-      this.setUser()
-    }
+  mounted: function () {
+    this.setUser()
   }
 }
 </script>

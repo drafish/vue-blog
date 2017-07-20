@@ -1,4 +1,5 @@
 <template>
+  <div>
     <div class="uk-width-medium-3-4">
         <div class="uk-alert uk-alert-danger" v-if="message" v-text="message"></div>
         <form v-on:submit.prevent="submit" class="uk-form uk-form-stacked">
@@ -18,10 +19,11 @@
             </div>
             <div class="uk-form-row">
                 <button type="submit" class="uk-button uk-button-primary"><i class="uk-icon-save"></i> 保存</button>
-                <a v-link="'/blog/'+blog.id" class="uk-button"><i class="uk-icon-times"></i> 取消</a>
+                <router-link :to="'/blog/'+blog.id" class="uk-button"><i class="uk-icon-times"></i> 取消</router-link>
             </div>
         </form>
     </div>
+  </div>
 </template>
 
 <script>
@@ -29,6 +31,13 @@ import marked from 'marked'
 import { setBlog, postBlog } from '../vuex/actions'
 import { getUser, getBlog } from '../vuex/getters'
 export default {
+  data () {
+    return {
+      title: '',
+      content: '',
+      message: ''
+    }
+  },
   vuex: {
     actions: {
       setBlog: setBlog,
@@ -39,7 +48,7 @@ export default {
       blog: getBlog
     }
   },
-  ready () {
+  mounted: function () {
     if (this.$route.params.id !== 'new') {
       this.setBlog()
       this.title = this.blog.title
@@ -63,18 +72,11 @@ export default {
         this.message = '标题和内容不能为空'
       } else {
         this.postBlog({
-          _id: this.$route.params.id,
+          id: this.$route.params.id,
           title: this.title,
           content: this.content
         })
       }
-    }
-  },
-  data () {
-    return {
-      title: '',
-      content: '',
-      message: ''
     }
   }
 }
