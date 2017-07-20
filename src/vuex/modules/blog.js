@@ -1,7 +1,7 @@
 import {SET_BLOG, SET_COMMENTS, CONCAT_COMMENT} from '../mutation-types'
 
 const state = {
-  blog: {},
+  blog: {user: {}},
   comments: [],
   page: {}
 }

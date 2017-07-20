@@ -1,51 +1,21 @@
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App.vue'
-import { smartDate } from './filters'
-import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
-import VueHead from 'vue-head'
+import App from './App'
+import router from './router'
+import { smartDate } from './filters'
 
-Vue.use(VueHead)
 Vue.use(VueResource)
-Vue.use(VueRouter)
+
+Vue.config.productionTip = false
+
 Vue.filter('smartDate', smartDate)
-const router = new VueRouter({
-  history: true,
-  hashbang: false
-})
 
-router.map({
-  '/home': {
-    name: 'home',
-    component: function (resolve) {
-      require(['./components/Home.vue'], resolve)
-    }
-  },
-  '/login': {
-    component: function (resolve) {
-      require(['./components/Login.vue'], resolve)
-    }
-  },
-  '/register': {
-    component: function (resolve) {
-      require(['./components/Register.vue'], resolve)
-    }
-  },
-  '/blog/:id': {
-    name: 'blog',
-    component: function (resolve) {
-      require(['./components/Blog.vue'], resolve)
-    }
-  },
-  '/edit/:id': {
-    component: function (resolve) {
-      require(['./components/Edit.vue'], resolve)
-    }
-  }
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  template: '<App/>',
+  components: { App }
 })
-
-router.redirect({
-  '*': '/home'
-})
-
-router.start(App, '#app')

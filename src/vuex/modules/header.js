@@ -1,7 +1,7 @@
 import {SET_USER, CLEAR_USER} from '../mutation-types'
 
 const state = {
-  user: ''
+  user: {}
 }
 
 const mutations = {
@@ -9,7 +9,7 @@ const mutations = {
     state.user = user
   },
   [CLEAR_USER] (state) {
-    state.user = ''
+    state.user = {}
   }
 }
 
