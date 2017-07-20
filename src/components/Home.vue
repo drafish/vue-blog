@@ -10,7 +10,7 @@
 
     </div>
 
-    <div v-show="user" class="uk-width-small-1-4">
+    <div v-show="user.id" class="uk-width-small-1-4">
         <div class="uk-panel uk-panel-header">
             <ul class="uk-list uk-list-line">
                 <li><i class="uk-icon-pencil-square-o"></i> <router-link to="/edit/new">新文章</router-link></li>

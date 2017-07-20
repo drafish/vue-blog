@@ -6,7 +6,7 @@
                 <li><router-link to="/"><i class="uk-icon-home"></i> 主页</router-link></li>
             </ul>
             <div class="uk-navbar-flip">
-                <ul v-if="user" class="uk-navbar-nav">
+                <ul v-if="user.id" class="uk-navbar-nav">
                     <li class="uk-parent" data-uk-dropdown>
                         <a><i v-text="' '+user.nickname" class="uk-icon-user"></i></a>
                         <div class="uk-dropdown uk-dropdown-navbar">

@@ -14,7 +14,7 @@
         <div class="uk-container uk-padding-remove">
             <div class="uk-width-1-1 uk-margin-large-top">
 
-                <article v-show="user" class="uk-comment">
+                <article v-show="user.id" class="uk-comment">
                     <header class="uk-comment-header">
                         <img class="uk-comment-avatar uk-border-circle" width="50" height="50" :src="user.headimgurl">
                         <h4 class="uk-comment-title" v-text="user.nickname"></h4>
@@ -102,7 +102,7 @@ export default {
         this.message = '评论不能为空'
       } else {
         this.postComment({
-          id: this.$route.params.id,
+          articleId: this.$route.params.id,
           content: this.comment
         })
         this.comment = ''

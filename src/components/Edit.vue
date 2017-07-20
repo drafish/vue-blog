@@ -31,6 +31,13 @@ import marked from 'marked'
 import { setBlog, postBlog } from '../vuex/actions'
 import { getUser, getBlog } from '../vuex/getters'
 export default {
+  data () {
+    return {
+      title: '',
+      content: '',
+      message: ''
+    }
+  },
   vuex: {
     actions: {
       setBlog: setBlog,
@@ -70,13 +77,6 @@ export default {
           content: this.content
         })
       }
-    }
-  },
-  data () {
-    return {
-      title: '',
-      content: '',
-      message: ''
     }
   }
 }

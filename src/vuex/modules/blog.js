@@ -16,7 +16,7 @@ const mutations = {
     state.page = page
   },
   [CONCAT_COMMENT] (state, comment) {
-    state.comments = comment.concat(state.comments)
+    state.comments.unshift(comment)
   }
 }
 

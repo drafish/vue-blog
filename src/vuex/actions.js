@@ -3,6 +3,7 @@ import marked from 'marked'
 import highlightjs from 'highlight.js'
 import 'highlight.js/styles/github.css'
 import _ from 'lodash'
+
 const formatPage = (itemCount, pageIndex, pageSize) => {
   let pageCount, offset, limit, hasNext, hasPrevious
   pageCount = parseInt(itemCount / pageSize)
@@ -34,6 +35,7 @@ const formatPage = (itemCount, pageIndex, pageSize) => {
 marked.setOptions({
   highlight: (code) => highlightjs.highlightAuto(code).value
 })
+
 export const setBlogs = function ({ dispatch }, currentPage, numsPerPage = 5) {
   dispatch(types.SET_ISFETCH, 0)
   this.$http.get('home/article/list', {
@@ -51,6 +53,7 @@ export const setBlogs = function ({ dispatch }, currentPage, numsPerPage = 5) {
     dispatch(types.SET_ISFETCH, 1)
   })
 }
+
 export const setUser = function ({ dispatch }) {
   dispatch(types.SET_ISFETCH, 0)
   this.$http.get('home/user/index').then(function (res) {
@@ -58,10 +61,13 @@ export const setUser = function ({ dispatch }) {
     dispatch(types.SET_ISFETCH, 1)
   })
 }
-export const logout = ({ dispatch }) => {
-  window.localStorage.clear()
-  dispatch(types.CLEAR_USER)
+
+export const logout = function ({ dispatch }) {
+  this.$http.get('home/user/signout').then(function (res) {
+    dispatch(types.CLEAR_USER)
+  })
 }
+
 export const setBlog = function ({ dispatch }) {
   dispatch(types.SET_ISFETCH, 0)
   this.$http.get('home/article/detail', {
@@ -74,6 +80,7 @@ export const setBlog = function ({ dispatch }) {
     dispatch(types.SET_ISFETCH, 1)
   })
 }
+
 export const setComments = function ({ dispatch }, currentPage, numsPerPage = 5) {
   dispatch(types.SET_ISFETCH, 0)
   this.$http.get('home/comment/list', {
@@ -92,43 +99,44 @@ export const setComments = function ({ dispatch }, currentPage, numsPerPage = 5)
     dispatch(types.SET_ISFETCH, 1)
   })
 }
-export const login = function ({ dispatch }, username, password) {
+
+export const login = function ({ dispatch }, account, password) {
   dispatch(types.SET_ISFETCH, 0)
-  this.$http.get('home/user/signin', {
-    params: {
-      username: username.trim(),
-      password
-    }
-  }).then(function (res) {
-    dispatch(types.SET_USER, res.data.data.user)
-    dispatch(types.SET_ISFETCH, 1)
-    this.$route.router.go(-1)
-  })
-}
-export const register = function ({ dispatch }, username, password) {
-  dispatch(types.SET_ISFETCH, 0)
-  this.$http.post('home/user/signup', {
-    username: username.trim(),
+  this.$http.post('home/user/signin', {
+    account: account.trim(),
     password
   }).then(function (res) {
-    dispatch(types.SET_USER, res.data.data.user)
+    dispatch(types.SET_USER, res.data.data)
     dispatch(types.SET_ISFETCH, 1)
-    window.localStorage.setItem('token', res.data.data.token)
-    this.$route.router.go(-1)
+    this.$router.go(-1)
   })
 }
+
+export const register = function ({ dispatch }, account, password) {
+  dispatch(types.SET_ISFETCH, 0)
+  this.$http.post('home/user/signup', {
+    account: account.trim(),
+    password
+  }).then(function (res) {
+    dispatch(types.SET_USER, res.data.data)
+    dispatch(types.SET_ISFETCH, 1)
+    this.$router.go(-1)
+  })
+}
+
 export const postComment = function ({ dispatch }, data) {
   dispatch(types.SET_ISFETCH, 0)
   this.$http.post('home/comment/add', data).then(function (res) {
-    res.data.data.comment[0].content = marked(res.data.data.comment[0].content)
-    dispatch(types.CONCAT_COMMENT, res.data.data.comment)
+    res.data.data.content = marked(res.data.data.content)
+    dispatch(types.CONCAT_COMMENT, res.data.data)
     dispatch(types.SET_ISFETCH, 1)
   })
 }
+
 export const postBlog = function ({ dispatch }, data) {
   dispatch(types.SET_ISFETCH, 0)
   this.$http.post('home/article/add', data).then(function (res) {
     dispatch(types.SET_ISFETCH, 1)
-    this.$route.router.go({name: 'blog', params: { id: res.data.data.blogid }})
+    this.$router.push({name: 'Blog', params: { id: res.data.data.articleId }})
   })
 }
