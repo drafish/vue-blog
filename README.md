@@ -1,32 +1,42 @@
-### 起源
-博客源于廖雪峰老师的[python3教程](http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000)最后的实战项目。
+# xwblog Vue 版
 
-目前UI部分还保留了原来的样式，其余部分都已重写。前端用vue重写成单页，后端也用nodejs重写。
+## 简介
+xwblog 是使用 Node.js + Mysql + Redis + 其它客户端框架开发的个人博客系统,前后端分离.    
+服务端有: [thinkjs 版](https://github.com/xwlyy/xwblog-api-thinkjs)    
+##### 此为客户端vue版, 需要配合服务端使用.
 
-#### 本项目只是单页博客的前端部分，需要配合后端启动
-后端有两个版本，[express-blog](https://github.com/xwlyy/express-blog.git)、[thinkjs-blog](https://github.com/xwlyy/thinkjs-blog.git)
+## 功能
+- 用户登录注册
+- 新建编辑文章
+- 评论
+- 貌似功能有点少啊，以后有空再加吧
 
-### 开发
+## 开发
 
 ```
-$ git clone https://github.com/xwlyy/vue-blog.git
-$ cd vue-blog
+$ git clone https://github.com/xwlyy/xwblog-home-vue
+$ cd xwblog-home-vue
 $ npm install
 $ npm run dev
 ```
-在浏览中打开http://localhost:8080
+在浏览器中打开 http://localhost:9090
 
-### 目录结构
+## 调试
+- 默认开启 vue-devtools [chrome浏览器扩展](https://github.com/vuejs/vue-devtools), 生产环境自动关闭
 
-本来想写下目录结构的，但后来想想还是算了。因为我是用vue-cli生成的项目，有些文件目录我自己也不知道干啥的，反正能用就行了。
 
-除了`docs`和`src`这两个目录，其他我都没动过。`docs`目录是我自己新建的，是github pages目录。`src`目录就是核心代码目录了，我写的全在这个目录下。
-
-### 生产环境构建  
+## 生产环境构建  
 
 ```
 $ npm run build
 ```
 
-### 部署到github pages
-[免费部署上线](http://www.paidepaiper.top/2016/10/08/read-before-study-jackblog/#%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2%E4%B8%8A%E7%BA%BF)
+## 部署
+用阿里云持续交付平台CRP实现持续集成、持续部署，免费的。当然跑项目用的服务还是得自己买。静态文件由Nginx返回.
+
+## TODO
+- vuex换成2.0版本
+- vue-resource换成axios
+- 写一个管理后台，UI组件库选的是element-ui（公司后台开发就用这个）
+- 可能还会专门为手机浏览览器写一个版本吧，UI组件库选的是mint-ui（公司微信端开发就用这个）
+- 用weex写一个APP（坑先挖着，反正管挖不管埋）
