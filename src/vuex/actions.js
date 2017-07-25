@@ -5,7 +5,7 @@ import 'highlight.js/styles/github.css'
 import _ from 'lodash'
 
 const formatPage = (itemCount, pageIndex, pageSize) => {
-  let pageCount, offset, limit, hasNext, hasPrevious
+  let pageCount, offset, limit
   pageCount = parseInt(itemCount / pageSize)
   if (itemCount % pageSize > 0) {
     pageCount = pageCount + 1
@@ -18,17 +18,13 @@ const formatPage = (itemCount, pageIndex, pageSize) => {
     offset = pageSize * (pageIndex - 1)
     limit = parseInt(pageSize)
   }
-  hasNext = pageIndex < pageCount
-  hasPrevious = pageIndex > 1
   return {
     itemCount,
     pageIndex,
     pageSize,
     pageCount,
     offset: offset,
-    limit: limit,
-    hasNext,
-    hasPrevious
+    limit: limit
   }
 }
 

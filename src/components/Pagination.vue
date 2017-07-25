@@ -1,24 +1,25 @@
 <template>
   <ul class="uk-pagination">
-    <li>
-      <a v-if="page.hasPrevious" :href="'?currentPage='+(page.pageIndex - 1)" v-on:click.prevent="gotoPage(page.pageIndex - 1)">上一页</a>
+    <li v-show="page.pageIndex > 1">
+      <span class="small-hand" @click="gotoPage(page.pageIndex - 1)">上一页</span>
     </li>
-    <li v-if="page.pageCount>1" :class="{'uk-active': page.pageIndex==1}">
-      <span v-if="page.pageIndex==1" v-text="1"></span>
-      <a v-else :href="'?currentPage=1'" v-on:click.prevent="gotoPage(1)" v-text="1"></a>
+    <li v-show="page.pageCount > 1" :class="{'uk-active': page.pageIndex == 1}">
+      <span @click="gotoPage(1)" :class="page.pageIndex == 1?'':'small-hand'">1</span>
     </li>
-    <li class="disabled" v-if="(page.pageIndex - 1) > 3"><span>...</span></li>
-    <li :class="{'uk-active': page.pageIndex==i}" v-for="i in page.pageCount" v-show="(i > 1) && (Math.abs(i - page.pageIndex) < 3)">
-      <span v-if="page.pageIndex==i" v-text="i"></span>
-      <a v-else :href="'?currentPage='+i" v-on:click.prevent="gotoPage(i)" v-text="i"></a>
+    <li class="disabled" v-show="(page.pageIndex - 1) > 3">
+      <span>...</span>
     </li>
-    <li class="disabled" v-if="(page.pageCount - page.pageIndex) > 3"><span>...</span></li>
-    <li :class="{'uk-active': page.pageIndex==page.pageCount}" v-if="page.pageCount > 1">
-      <span v-if="page.pageIndex==page.pageCount" v-text="page.pageCount"></span>
-      <a v-else :href="'?currentPage='+page.pageCount" v-on:click.prevent="gotoPage(page.pageCount)" v-text="page.pageCount"></a>
+    <li :class="{'uk-active': page.pageIndex == i}" v-for="i in page.pageCount" v-show="(i > 1) && (i < page.pageCount) && (Math.abs(i - page.pageIndex) < 3)">
+      <span @click="gotoPage(i)" :class="page.pageIndex == i?'':'small-hand'">{{i}}</span>
     </li>
-    <li>
-      <a v-if="page.hasNext" :href="'?currentPage='+(page.pageIndex*1 + 1)" v-on:click.prevent="gotoPage(page.pageIndex*1 + 1)">下一页</a>
+    <li class="disabled" v-show="(page.pageCount - page.pageIndex) > 3">
+      <span>...</span>
+    </li>
+    <li :class="{'uk-active': page.pageIndex == page.pageCount}" v-show="page.pageCount > 1">
+      <span @click="gotoPage(page.pageCount)" :class="page.pageIndex == page.pageCount?'':'small-hand'">{{page.pageCount}}</span>
+    </li>
+    <li v-show="page.pageIndex < page.pageCount">
+      <span class="small-hand" @click="gotoPage(page.pageIndex*1 + 1)">下一页</span>
     </li>
   </ul>
 </template>
@@ -28,8 +29,18 @@
     props: ['page'],
     methods: {
       gotoPage: function (page) {
-        return this.$parent.getItems(page)
+        if (page === this.page.pageIndex) {
+          console.log('当前页')
+        } else {
+          return this.$parent.getItems(page)
+        }
       }
     }
   }
 </script>
+
+<style scoped>
+  .small-hand{
+    cursor: pointer;
+  }
+</style>
