@@ -28,8 +28,8 @@
 
 <script>
 import marked from 'marked'
-import { setBlog, postBlog } from '../vuex/actions'
-import { getUser, getBlog } from '../vuex/getters'
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   data () {
     return {
@@ -38,24 +38,11 @@ export default {
       message: ''
     }
   },
-  vuex: {
-    actions: {
-      setBlog: setBlog,
-      postBlog: postBlog
-    },
-    getters: {
-      user: getUser,
-      blog: getBlog
-    }
-  },
-  mounted: function () {
-    if (this.$route.params.id !== 'new') {
-      this.setBlog()
-      this.title = this.blog.title
-      this.content = this.blog.content
-    }
-  },
   computed: {
+    ...mapGetters({
+      user: 'userDetail',
+      blog: 'articleDetail'
+    }),
     preview: function () {
       let _content = this.content
       marked(_content, (err, content) => {
@@ -67,16 +54,34 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'getArticleDetail',
+      'addArticle'
+    ]),
     submit: function () {
       if (this.title.trim() === '' || this.content.trim() === '') {
         this.message = '标题和内容不能为空'
-      } else {
-        this.postBlog({
+        return
+      }
+      if (this.$route.params.id !== 'new') {
+        this.modifyArticle({
           id: this.$route.params.id,
           title: this.title,
           content: this.content
         })
+      } else {
+        this.addArticle({
+          title: this.title,
+          content: this.content
+        })
       }
+    }
+  },
+  mounted: function () {
+    if (this.$route.params.id !== 'new') {
+      this.getArticleDetail()
+      this.title = this.blog.title
+      this.content = this.blog.content
     }
   }
 }

@@ -33,19 +33,18 @@
 </template>
 
 <script>
-import { register } from '../vuex/actions'
+import { mapActions } from 'vuex'
+
 export default {
-  vuex: {
-    actions: {
-      register: register
-    }
-  },
   methods: {
+    ...mapActions([
+      'signup'
+    ]),
     submit: function () {
       if (this.account.trim() === '' || this.password === '') {
         this.message = '用户名或密码不能为空'
       } else {
-        this.register(this.account, this.password)
+        this.signup({account: this.account, password: this.password})
       }
     }
   },

@@ -11,7 +11,7 @@
                         <a><i v-text="' '+user.nickname" class="uk-icon-user"></i></a>
                         <div class="uk-dropdown uk-dropdown-navbar">
                             <ul class="uk-nav uk-nav-navbar">
-                                <li><a v-on:click="logout" href="javascript:;"><i class="uk-icon-sign-out"></i> 登出</a></li>
+                                <li><a @click="signout" href="javascript:;"><i class="uk-icon-sign-out"></i> 登出</a></li>
                             </ul>
                         </div>
                     </li>
@@ -23,30 +23,27 @@
             </div>
         </div>
     </nav>
-    <loading v-bind:load="!isFetch"></loading>
+    <!-- <loading v-bind:load="!isFetch"></loading> -->
   </div>
 </template>
 
 <script>
-import Loading from './Loading'
-import { setUser, logout } from '../vuex/actions'
-import { getUser, getIsFetch } from '../vuex/getters'
+// import Loading from './Loading'
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
-  vuex: {
-    actions: {
-      setUser: setUser,
-      logout: logout
-    },
-    getters: {
-      user: getUser,
-      isFetch: getIsFetch
-    }
-  },
-  components: {
-    Loading
-  },
+  computed: mapGetters({
+    user: 'userDetail'
+  }),
+  methods: mapActions([
+    'signout',
+    'getUserDetail'
+  ]),
+  // components: {
+  //   Loading
+  // },
   mounted: function () {
-    this.setUser()
+    this.getUserDetail()
   }
 }
 </script>

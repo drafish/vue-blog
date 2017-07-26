@@ -23,24 +23,22 @@
 
 <script>
 import Pagination from './Pagination'
-import { setBlogs } from '../vuex/actions'
-import { getUser, getBlogs, getBPage } from '../vuex/getters'
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
-  vuex: {
-    actions: {
-      getItems: setBlogs
-    },
-    getters: {
-      user: getUser,
-      blogs: getBlogs,
-      page: getBPage
-    }
-  },
+  computed: mapGetters({
+    user: 'userDetail',
+    blogs: 'articleList',
+    page: 'articlePage'
+  }),
+  methods: mapActions([
+    'getArticleList'
+  ]),
   components: {
     Pagination
   },
   mounted: function () {
-    this.getItems(1)
+    this.getArticleList({currentPage: 1, numsPerPage: 5})
   }
 }
 </script>

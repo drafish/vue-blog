@@ -27,19 +27,18 @@
 </template>
 
 <script>
-import { login } from '../vuex/actions'
+import { mapActions } from 'vuex'
+
 export default {
-  vuex: {
-    actions: {
-      login: login
-    }
-  },
   methods: {
+    ...mapActions([
+      'signin'
+    ]),
     submit: function () {
       if (this.account.trim() === '' || this.password === '') {
         this.message = '用户名或密码不能为空'
       } else {
-        this.login(this.account, this.password)
+        this.signin({account: this.account, password: this.password})
       }
     }
   },

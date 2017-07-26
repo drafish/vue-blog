@@ -73,42 +73,9 @@
 
 <script>
 import Pagination from './Pagination'
-import { setBlog, setComments, postComment } from '../vuex/actions'
-import { getUser, getBlog, getComments, getCPage } from '../vuex/getters'
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
-  vuex: {
-    actions: {
-      setBlog: setBlog,
-      getItems: setComments,
-      postComment: postComment
-    },
-    getters: {
-      user: getUser,
-      blog: getBlog,
-      comments: getComments,
-      page: getCPage
-    }
-  },
-  components: {
-    Pagination
-  },
-  mounted: function () {
-    this.setBlog()
-    this.getItems(1)
-  },
-  methods: {
-    submit: function () {
-      if (this.comment.trim() === '') {
-        this.message = '评论不能为空'
-      } else {
-        this.postComment({
-          articleId: this.$route.params.id,
-          content: this.comment
-        })
-        this.comment = ''
-      }
-    }
-  },
   data () {
     return {
       comment: '',
@@ -116,15 +83,37 @@ export default {
       title: '六月羊的博客页'
     }
   },
-  head: {
-    title: function () {
-      return {
-        inner: this.title
+  computed: mapGetters({
+    user: 'userDetail',
+    blog: 'articleDetail',
+    comments: 'commentList',
+    page: 'commentPage'
+  }),
+  methods: {
+    ...mapActions([
+      'getArticleDetail',
+      'getCommentList',
+      'addComment'
+    ]),
+    submit: function () {
+      if (this.comment.trim() === '') {
+        this.message = '评论不能为空'
+      } else {
+        this.addComment({
+          articleId: this.$route.params.id,
+          content: this.comment
+        })
+        this.comment = ''
       }
-    },
-    meta: [
-      { name: 'description', content: 'blog page', id: 'desc' }
-    ]
+    }
+  },
+  components: {
+    Pagination
+  },
+  mounted: function () {
+    this.getArticleDetail(this.$route.params.id)
+    this.getCommentList({articleId: this.$route.params.id, currentPage: 1, numsPerPage: 5})
   }
+
 }
 </script>

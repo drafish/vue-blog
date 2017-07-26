@@ -32,7 +32,7 @@
         if (page === this.page.pageIndex) {
           console.log('当前页')
         } else {
-          return this.$parent.getItems(page)
+          return this.$parent.getArticleList({currentPage: page, numsPerPage: 5})
         }
       }
     }
