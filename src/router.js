@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
-import Login from '@/components/Login'
-import Register from '@/components/Register'
-import Blog from '@/components/Blog'
-import Edit from '@/components/Edit'
+import ArticleList from '@/components/ArticleList'
+import ArticleDetail from '@/components/ArticleDetail'
+import ArticleEdit from '@/components/ArticleEdit'
+import Signin from '@/components/Signin'
+import Signup from '@/components/Signup'
 
 Vue.use(Router)
 
@@ -12,28 +12,28 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
+      name: 'ArticleList',
+      component: ArticleList
     },
     {
-      path: '/login',
-      name: 'Login',
-      component: Login
+      path: '/signin',
+      name: 'Signin',
+      component: Signin
     },
     {
-      path: '/register',
-      name: 'Register',
-      component: Register
+      path: '/signup',
+      name: 'Signup',
+      component: Signup
     },
     {
-      path: '/blog/:id',
-      name: 'Blog',
-      component: Blog
+      path: '/article/:id',
+      name: 'ArticleDetail',
+      component: ArticleDetail
     },
     {
       path: '/edit/:id',
-      name: 'Edit',
-      component: Edit
+      name: 'ArticleEdit',
+      component: ArticleEdit
     }
   ]
 })

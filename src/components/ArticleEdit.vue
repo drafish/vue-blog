@@ -19,7 +19,7 @@
             </div>
             <div class="uk-form-row">
                 <button type="submit" class="uk-button uk-button-primary"><i class="uk-icon-save"></i> 保存</button>
-                <router-link :to="'/blog/'+blog.id" class="uk-button"><i class="uk-icon-times"></i> 取消</router-link>
+                <router-link :to="'/article/'+article.id" class="uk-button"><i class="uk-icon-times"></i> 取消</router-link>
             </div>
         </form>
     </div>
@@ -41,7 +41,7 @@ export default {
   computed: {
     ...mapGetters({
       user: 'userDetail',
-      blog: 'articleDetail'
+      article: 'articleDetail'
     }),
     preview: function () {
       let _content = this.content
@@ -76,15 +76,15 @@ export default {
           title: this.title,
           content: this.content
         })
-        this.$router.push({name: 'Blog', params: { id: res.data.data.articleId }})
+        this.$router.push({name: 'ArticleDetail', params: { id: res.data.data.articleId }})
       }
     }
   },
   mounted: function () {
     if (this.$route.params.id !== 'new') {
       // this.getArticleDetail(this.$route.params.id)
-      this.title = this.blog.title
-      this.content = this.blog.content
+      this.title = this.article.title
+      this.content = this.article.content
     }
   }
 }

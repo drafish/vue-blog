@@ -1,22 +1,22 @@
 <template>
   <div id="app">
-    <vheader></vheader>
+    <HeaderBar></HeaderBar>
     <div class="uk-container uk-container-center">
       <router-view class="uk-grid"></router-view>
     </div>
-    <vfooter></vfooter>
+    <FooterBar></FooterBar>
   </div>
 </template>
 
 <script>
-  import Vheader from '@/components/Vheader'
-  import Vfooter from '@/components/Vfooter'
+  import HeaderBar from '@/components/HeaderBar'
+  import FooterBar from '@/components/FooterBar'
 
   export default {
     name: 'app',
     components: {
-      Vheader,
-      Vfooter
+      HeaderBar,
+      FooterBar
     }
   }
 </script>

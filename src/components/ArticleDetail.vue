@@ -4,11 +4,11 @@
         <div class="uk-grid-margin" >
             <div class="uk-width-1-1">
                 <article class="uk-article">
-                <h2 v-text="blog.title"></h2>
-                <p class="uk-article-meta">发表于<span>{{blog.createTime|smartDate}}</span></p>
-                <p><span v-html="blog.marked"></span></p>
+                <h2 v-text="article.title"></h2>
+                <p class="uk-article-meta">发表于<span>{{article.createTime|smartDate}}</span></p>
+                <p><span v-html="article.marked"></span></p>
                 </article>
-                <router-link v-show="blog.user.id === user.id" :to="'/edit/'+blog.id">编辑</router-link><br/><br/>
+                <router-link v-show="article.user.id === user.id" :to="'/edit/'+article.id">编辑</router-link><br/><br/>
             </div>
         </div>
         <div class="uk-container uk-padding-remove">
@@ -42,7 +42,7 @@
                         <article class="uk-comment" v-for="comment in comments">
                             <header class="uk-comment-header">
                                 <a><img class="uk-comment-avatar uk-border-circle" width="50" height="50" :src="comment.user.headimgurl"></a>
-                                <h4 class="uk-comment-title"><span v-text="comment.user.nickname"></span><span v-if="comment.user.id === blog.user.id">(作者)</span></h4>
+                                <h4 class="uk-comment-title"><span v-text="comment.user.nickname"></span><span v-if="comment.user.id === article.user.id">(作者)</span></h4>
                                 <p class="uk-comment-meta"><span>{{comment.createTime|smartDate}}</span></p>
                             </header>
                             <div class="uk-comment-body">
@@ -56,15 +56,15 @@
 
                 </ul>
             </div>
-            <pagination v-bind:page="page"></pagination>
+            <pagination :page="page" @changePage="changePage"></pagination>
         </div>
     </div>
 
     <div class="uk-width-medium-1-4">
         <div class="uk-panel uk-panel-box">
             <a><div class="uk-text-center">
-                <img class="uk-border-circle" width="120" height="120" :src="blog.user.headimgurl">
-                <h3 v-text="blog.user.nickname"></h3>
+                <img class="uk-border-circle" width="120" height="120" :src="article.user.headimgurl">
+                <h3 v-text="article.user.nickname"></h3>
             </div></a>
         </div>
     </div>
@@ -85,7 +85,7 @@ export default {
   },
   computed: mapGetters({
     user: 'userDetail',
-    blog: 'articleDetail',
+    article: 'articleDetail',
     comments: 'commentList',
     page: 'commentPage'
   }),
@@ -105,6 +105,9 @@ export default {
         })
         this.comment = ''
       }
+    },
+    changePage: function () {
+      this.getCommentList({articleId: this.$route.params.id, currentPage: arguments[0], numsPerPage: 5})
     }
   },
   components: {

@@ -28,11 +28,11 @@
   export default {
     props: ['page'],
     methods: {
-      gotoPage: function (page) {
-        if (page === this.page.pageIndex) {
+      gotoPage: function (pageIndex) {
+        if (pageIndex === this.page.pageIndex) {
           console.log('当前页')
         } else {
-          return this.$parent.getArticleList({currentPage: page, numsPerPage: 5})
+          this.$emit('changePage', pageIndex)
         }
       }
     }
