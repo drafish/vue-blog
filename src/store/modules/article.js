@@ -64,15 +64,12 @@ const actions = {
       commit(types.SET_ARTICLE, res.data.data)
     })
   },
-  addArticle ({ commit }, data) {
-    api.addArticle(data).then(res => {
-      this.$router.push({name: 'Blog', params: { id: res.data.data.articleId }})
-    })
+  async addArticle ({ commit }, data) {
+    let res = await api.addArticle(data)
+    return res
   },
-  modifyArticle ({ commit }, data) {
-    api.modifyArticle(data).then(res => {
-      this.$router.go(-1)
-    })
+  async modifyArticle ({ commit }, data) {
+    await api.modifyArticle(data)
   }
 }
 

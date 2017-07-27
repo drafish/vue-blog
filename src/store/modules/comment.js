@@ -70,7 +70,7 @@ const mutations = {
     state.list = list
     state.page = page
   },
-  [types.SET_COMMENTS] (state, comment) {
+  [types.CONCAT_COMMENT] (state, comment) {
     state.list.unshift(comment)
   }
 }

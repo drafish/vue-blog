@@ -18,15 +18,13 @@ const actions = {
       commit(types.SET_USER, res.data.data)
     })
   },
-  signin ({ commit }, data) {
-    api.signin(data).then(res => {
-      commit(types.SET_USER, res.data.data)
-    })
+  async signin ({ commit }, data) {
+    let res = await api.signin(data)
+    commit(types.SET_USER, res.data.data)
   },
-  signup ({ commit }, data) {
-    api.signup(data).then(res => {
-      commit(types.SET_USER, res.data.data)
-    })
+  async signup ({ commit }, data) {
+    let res = await api.signup(data)
+    commit(types.SET_USER, res.data.data)
   },
   signout ({ commit }, data) {
     api.signout().then(res => {

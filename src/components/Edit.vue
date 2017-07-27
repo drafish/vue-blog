@@ -56,30 +56,33 @@ export default {
   methods: {
     ...mapActions([
       'getArticleDetail',
-      'addArticle'
+      'addArticle',
+      'modifyArticle'
     ]),
-    submit: function () {
+    submit: async function () {
       if (this.title.trim() === '' || this.content.trim() === '') {
         this.message = '标题和内容不能为空'
         return
       }
       if (this.$route.params.id !== 'new') {
-        this.modifyArticle({
+        await this.modifyArticle({
           id: this.$route.params.id,
           title: this.title,
           content: this.content
         })
+        this.$router.go(-1)
       } else {
-        this.addArticle({
+        let res = await this.addArticle({
           title: this.title,
           content: this.content
         })
+        this.$router.push({name: 'Blog', params: { id: res.data.data.articleId }})
       }
     }
   },
   mounted: function () {
     if (this.$route.params.id !== 'new') {
-      this.getArticleDetail()
+      // this.getArticleDetail(this.$route.params.id)
       this.title = this.blog.title
       this.content = this.blog.content
     }

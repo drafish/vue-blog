@@ -40,11 +40,12 @@ export default {
     ...mapActions([
       'signup'
     ]),
-    submit: function () {
+    submit: async function () {
       if (this.account.trim() === '' || this.password === '') {
         this.message = '用户名或密码不能为空'
       } else {
-        this.signup({account: this.account, password: this.password})
+        await this.signup({account: this.account, password: this.password})
+        this.$router.go(-1)
       }
     }
   },

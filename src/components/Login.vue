@@ -34,11 +34,12 @@ export default {
     ...mapActions([
       'signin'
     ]),
-    submit: function () {
+    submit: async function () {
       if (this.account.trim() === '' || this.password === '') {
         this.message = '用户名或密码不能为空'
       } else {
-        this.signin({account: this.account, password: this.password})
+        await this.signin({account: this.account, password: this.password})
+        this.$router.go(-1)
       }
     }
   },
