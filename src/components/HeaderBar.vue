@@ -4,6 +4,8 @@
         <div class="uk-container uk-container-center">
             <ul class="uk-navbar-nav">
                 <li><router-link to="/"><i class="uk-icon-home"></i> 主页</router-link></li>
+                <li><a href="https://github.com/xwlyy/xwblog-home-vue" target="_blank">前端源码</a></li>
+                <li><a href="https://github.com/xwlyy/xwblog-api-thinkjs" target="_blank">后端源码</a></li>
             </ul>
             <div class="uk-navbar-flip">
                 <ul v-if="user.id" class="uk-navbar-nav">
@@ -17,8 +19,8 @@
                     </li>
                 </ul>
                 <ul v-else class="uk-navbar-nav">
-                    <li><router-link to="/login"><i class="uk-icon-sign-in"></i> 登陆</router-link></li>
-                    <li><router-link to="/register"><i class="uk-icon-edit"></i> 注册</router-link></li>
+                    <li><router-link to="/signin"><i class="uk-icon-sign-in"></i> 登陆</router-link></li>
+                    <li><router-link to="/signup"><i class="uk-icon-edit"></i> 注册</router-link></li>
                 </ul>
             </div>
         </div>
@@ -28,24 +30,24 @@
 </template>
 
 <script>
-// import Loading from './Loading'
-import { mapGetters, mapActions } from 'vuex'
+  // import Loading from './Loading'
+  import { mapGetters, mapActions } from 'vuex'
 
-export default {
-  computed: mapGetters({
-    user: 'userDetail'
-  }),
-  methods: mapActions([
-    'signout',
-    'getUserDetail'
-  ]),
-  // components: {
-  //   Loading
-  // },
-  mounted: function () {
-    this.getUserDetail()
+  export default {
+    computed: mapGetters({
+      user: 'userDetail'
+    }),
+    methods: mapActions([
+      'signout',
+      'getUserDetail'
+    ]),
+    // components: {
+    //   Loading
+    // },
+    mounted: function () {
+      this.getUserDetail()
+    }
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

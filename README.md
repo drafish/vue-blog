@@ -37,6 +37,8 @@ $ npm run build
 ## TODO
 - ~~vuex换成2.0版本~~
 - ~~vue-resource换成axios~~
+- 前端数据验证
+- uikit2换成uikit3
 - 写一个管理后台，UI组件库选的是element-ui（公司后台开发就用这个）
 - 可能还会专门为手机浏览览器写一个版本吧，UI组件库选的是mint-ui（公司微信端开发就用这个）
 - 用weex写一个APP（坑先挖着，反正管挖不管埋）
