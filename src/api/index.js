@@ -2,45 +2,45 @@ import {ArticleResource, UserResource, CommentResource} from './resources'
 
 export default {
   getArticleDetail: function (params) {
-    return ArticleResource.get({action: 'detail', ...params})
+    return ArticleResource.get('detail', {params})
   },
   getArticleList: function (params) {
-    return ArticleResource.get({action: 'list', ...params})
+    return ArticleResource.get('list', {params})
   },
   addArticle: function (data) {
-    return ArticleResource.save({action: 'add'}, data)
+    return ArticleResource.post('add', data)
   },
   modifyArticle: function (data) {
-    return ArticleResource.save({action: 'modify'}, data)
+    return ArticleResource.post('modify', data)
   },
   getUserDetail: function () {
-    return UserResource.get({action: 'index'})
+    return UserResource.get('index')
   },
   signin: function (user) {
-    return UserResource.update({action: 'signin'}, user)
+    return UserResource.put('signin', user)
   },
   signup: function (user) {
-    return UserResource.save({action: 'signup'}, user)
+    return UserResource.post('signup', user)
   },
   signout: function () {
-    return UserResource.remove({action: 'signout'})
+    return UserResource.delete('signout')
   },
   modifyUser: function (user) {
-    return UserResource.update({action: 'modify'}, user)
+    return UserResource.put('modify', user)
   },
   modifyPassword: function (user) {
-    return UserResource.update({action: 'password'}, user)
+    return UserResource.put('password', user)
   },
   getCommentList: function (params) {
-    return CommentResource.get({action: 'list', ...params})
+    return CommentResource.get('list', {params})
   },
   addComment: function (data) {
-    return CommentResource.save({action: 'add'}, data)
+    return CommentResource.post('add', data)
   },
   modifyComment: function (data) {
-    return CommentResource.update({action: 'modify'}, data)
+    return CommentResource.put('modify', data)
   },
   deleteComment: function (params) {
-    return CommentResource.remove({action: 'delete', ...params})
+    return CommentResource.delete('delete', {params})
   }
 }

@@ -1,9 +1,5 @@
-import Vue from 'vue'
-import VueResource from 'vue-resource'
+import axios from 'axios'
 
-Vue.use(VueResource)
-const module = 'home/'
-
-export const ArticleResource = Vue.resource(module + 'article{/action}')
-export const UserResource = Vue.resource(module + 'user{/action}')
-export const CommentResource = Vue.resource(module + 'comment{/action}')
+export const ArticleResource = axios.create({baseURL: 'home/article'})
+export const UserResource = axios.create({baseURL: 'home/user'})
+export const CommentResource = axios.create({baseURL: 'home/comment'})
